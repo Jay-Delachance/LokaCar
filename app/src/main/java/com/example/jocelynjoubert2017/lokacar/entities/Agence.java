@@ -1,33 +1,31 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
-@DatabaseTable(tableName = "agences")
+
+@Entity(tableName = "agences")
 public class Agence {
 
-    @DatabaseField(generatedId = true)
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String nom;
     private String adresse;
     private String codePostal;
     private String ville;
     private String telephone;
-    private String horaire;
 
 
     public Agence() {
     }
 
-    public Agence(int id, String nom, String adresse, String codePostal, String ville, String telephone, String horaire) {
-        this.id = id;
+    public Agence(String nom, String adresse, String codePostal, String ville, String telephone) {
         this.nom = nom;
         this.adresse = adresse;
         this.codePostal = codePostal;
         this.ville = ville;
         this.telephone = telephone;
-        this.horaire = horaire;
     }
 
     public int getId() {
@@ -78,13 +76,6 @@ public class Agence {
         this.telephone = telephone;
     }
 
-    public String getHoraire() {
-        return horaire;
-    }
-
-    public void setHoraire(String horaire) {
-        this.horaire = horaire;
-    }
 
     @Override
     public String toString() {
@@ -95,7 +86,6 @@ public class Agence {
                 ", codePostal='" + codePostal + '\'' +
                 ", ville='" + ville + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", horaire='" + horaire + '\'' +
                 '}';
     }
 }

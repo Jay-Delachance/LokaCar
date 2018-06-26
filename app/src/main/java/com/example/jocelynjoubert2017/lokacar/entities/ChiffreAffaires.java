@@ -1,42 +1,36 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
-import android.media.Image;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Date;
 
-@DatabaseTable(tableName = "ChiffresAffaires")
+@Entity(tableName = "ChiffresAffaires",
+        foreignKeys = {
+        @ForeignKey(entity = Agence.class, parentColumns = "id", childColumns = "agence_id")
+})
 public class ChiffreAffaires {
 
-    @DatabaseField(generatedId = true)
-    private int id;
+    @PrimaryKey
     private Date dateCA;
-    private int totalCA;
+    private float totalCA;
 
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Agence agence;
+    @ColumnInfo(name = "agence_id") // foreignKey
+    private String agenceId;
 
 
     public ChiffreAffaires() {
     }
 
-    public ChiffreAffaires(int id, Date dateCA, int totalCA, Agence agence) {
-        this.id = id;
+    public ChiffreAffaires(Date dateCA, float totalCA, String agenceId) {
         this.dateCA = dateCA;
         this.totalCA = totalCA;
-        this.agence = agence;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.agenceId = agenceId;
     }
 
     public Date getDateCA() {
@@ -47,7 +41,7 @@ public class ChiffreAffaires {
         this.dateCA = dateCA;
     }
 
-    public int getTotalCA() {
+    public float getTotalCA() {
         return totalCA;
     }
 
@@ -55,21 +49,20 @@ public class ChiffreAffaires {
         this.totalCA = totalCA;
     }
 
-    public Agence getAgence() {
-        return agence;
+    public String getAgenceId() {
+        return agenceId;
     }
 
-    public void setAgence(Agence agence) {
-        this.agence = agence;
+    public void setAgenceId(String agenceId) {
+        this.agenceId = agenceId;
     }
 
     @Override
     public String toString() {
         return "ChiffreAffaires{" +
-                "id=" + id +
                 ", dateCA=" + dateCA +
                 ", totalCA=" + totalCA +
-                ", agence=" + agence +
+                ", agence=" + agenceId +
                 '}';
     }
 }

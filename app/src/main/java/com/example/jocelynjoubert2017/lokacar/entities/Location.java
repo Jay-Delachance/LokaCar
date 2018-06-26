@@ -1,41 +1,59 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 
 import java.util.Date;
 
-@DatabaseTable(tableName = "locations")
+@Entity(tableName = "locations",
+        foreignKeys = {
+                @ForeignKey(entity = Vehicule.class, parentColumns = "immat", childColumns = "vehicule_id"),
+                @ForeignKey(entity = Agence.class, parentColumns = "id", childColumns = "agence_id"),
+                @ForeignKey(entity = Client.class, parentColumns = "id", childColumns = "client_id")
+
+        })
 public class Location {
 
-    @DatabaseField(generatedId = true)
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @NonNull
+    private Date dateReservation;
+    @NonNull
     private Date dateDepart;
-    private Date dateRetour;
+    @NonNull
+    private Date dateRetourReel;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Vehicule vehicule;
+    @Nullable
+    private Date dateRetourPrevu;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Agence agence;
+    @ColumnInfo(name = "vehicule_id") // foreignKey
+    private String vehiculeId;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Client client;
+    @ColumnInfo(name = "agence_id") // foreignKey
+    private String agenceId;
+
+    @ColumnInfo(name = "client_id") // foreignKey
+    private String clientId;
 
 
     public Location() {
     }
 
-    public Location(int id, Date dateDepart, Date dateRetour, Vehicule vehicule, Agence agence, Client client) {
-        this.id = id;
+    public Location(Date dateReservation, Date dateDepart, Date dateRetourReel, Date dateRetourPrevu, String vehiculeId, String agenceId, String clientId) {
+        this.dateReservation = dateReservation;
         this.dateDepart = dateDepart;
-        this.dateRetour = dateRetour;
-        this.vehicule = vehicule;
-        this.agence = agence;
-        this.client = client;
+        this.dateRetourReel = dateRetourReel;
+        this.dateRetourPrevu = dateRetourPrevu;
+        this.vehiculeId = vehiculeId;
+        this.agenceId = agenceId;
+        this.clientId = clientId;
     }
-
 
     public int getId() {
         return id;
@@ -43,6 +61,14 @@ public class Location {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getDateReservation() {
+        return dateReservation;
+    }
+
+    public void setDateReservation(Date dateReservation) {
+        this.dateReservation = dateReservation;
     }
 
     public Date getDateDepart() {
@@ -53,48 +79,59 @@ public class Location {
         this.dateDepart = dateDepart;
     }
 
-    public Date getDateRetour() {
-        return dateRetour;
+    public Date getDateRetourReel() {
+        return dateRetourReel;
     }
 
-    public void setDateRetour(Date dateRetour) {
-        this.dateRetour = dateRetour;
+    public void setDateRetourReel(Date dateRetourReel) {
+        this.dateRetourReel = dateRetourReel;
     }
 
-    public Vehicule getVehicule() {
-        return vehicule;
+    public Date getDateRetourPrevu() {
+        return dateRetourPrevu;
     }
 
-    public void setVehicule(Vehicule vehicule) {
-        this.vehicule = vehicule;
+    public void setDateRetourPrevu(Date dateRetourPrevu) {
+        this.dateRetourPrevu = dateRetourPrevu;
     }
 
-    public Agence getAgence() {
-        return agence;
+    @NonNull
+    public String getVehiculeId() {
+        return vehiculeId;
     }
 
-    public void setAgence(Agence agence) {
-        this.agence = agence;
+    public void setVehiculeId(@NonNull String vehiculeId) {
+        this.vehiculeId = vehiculeId;
     }
 
-    public Client getClient() {
-        return client;
+    @NonNull
+    public String getAgenceId() {
+        return agenceId;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setAgenceId(@NonNull String agenceId) {
+        this.agenceId = agenceId;
     }
 
+    @NonNull
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(@NonNull String clientId) {
+        this.clientId = clientId;
+    }
 
     @Override
     public String toString() {
         return "Location{" +
-                "id=" + id +
+                ", dateReservation=" + dateReservation +
                 ", dateDepart=" + dateDepart +
-                ", dateRetour=" + dateRetour +
-                ", vehicule=" + vehicule +
-                ", agence=" + agence +
-                ", client=" + client +
+                ", dateRetourReel=" + dateRetourReel +
+                ", dateRetourPrevu=" + dateRetourPrevu +
+                ", vehicule=" + vehiculeId +
+                ", agence=" + agenceId +
+                ", client=" + clientId +
                 '}';
     }
 }

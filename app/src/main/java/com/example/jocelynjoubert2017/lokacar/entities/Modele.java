@@ -1,37 +1,53 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 import android.media.Image;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import java.util.ArrayList;
+import java.util.List;
 
-@DatabaseTable(tableName = "modeles")
+@Entity(tableName = "modeles",
+        foreignKeys = {
+                @ForeignKey(entity = Marque.class, parentColumns = "nom", childColumns = "marque_id")
+        })
 public class Modele {
 
-    @DatabaseField(generatedId = true)
+    public final static String CITADINE = "Citadine";
+    public final static String SUV = "SUV";
+    public final static String BERLINE = "Berling";
+    public final static String FAMILLIALE = "Familliale";
+
+    public final static String ESSENCE = "Essence";
+    public final static String DIESEL = "Diesel";
+    public final static String HYBRIDE = "Hybride";
+
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String nom;
     private String typeVehicule;
     private String typeCarburant;
-    private int prixParJour;
+    private float prixParJour;
     private Image photo;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Marque marque;
+    @ColumnInfo(name = "marque_id")
+    private String marqueId; //FK
 
 
     public Modele() {
     }
 
-    public Modele(int id, String nom, String typeVehicule, String typeCarburant, int prixParJour, Image photo, Marque marque) {
-        this.id = id;
+    public Modele(String nom, String typeVehicule, String typeCarburant, int prixParJour, Image photo, String marqueId) {
         this.nom = nom;
         this.typeVehicule = typeVehicule;
         this.typeCarburant = typeCarburant;
         this.prixParJour = prixParJour;
         this.photo = photo;
-        this.marque = marque;
+        this.marqueId = marqueId;
     }
 
 
@@ -67,11 +83,11 @@ public class Modele {
         this.typeCarburant = typeCarburant;
     }
 
-    public int getPrixParJour() {
+    public float getPrixParJour() {
         return prixParJour;
     }
 
-    public void setPrixParJour(int prixParJour) {
+    public void setPrixParJour(float prixParJour) {
         this.prixParJour = prixParJour;
     }
 
@@ -83,12 +99,12 @@ public class Modele {
         this.photo = photo;
     }
 
-    public Marque getMarque() {
-        return marque;
+    public String getMarqueId() {
+        return marqueId;
     }
 
-    public void setMarque(Marque marque) {
-        this.marque = marque;
+    public void setMarqueId(String marqueId) {
+        this.marqueId = marqueId;
     }
 
     @Override
@@ -100,7 +116,37 @@ public class Modele {
                 ", typeCarburant='" + typeCarburant + '\'' +
                 ", prixParJour=" + prixParJour +
                 ", photo=" + photo +
-                ", marque=" + marque +
+                ", marqueId='" + marqueId + '\'' +
                 '}';
+    }
+
+    /**
+     * Permet de récupérer les liste des types de véhicules
+     * @return List<String>
+     */
+    public static List<String> getTypeVehicules(){
+        List<String> typesVehicules = new ArrayList<>();
+
+        typesVehicules.add(SUV);
+        typesVehicules.add(CITADINE);
+        typesVehicules.add(FAMILLIALE);
+        typesVehicules.add(BERLINE);
+
+        return typesVehicules;
+    }
+
+    /**
+     * Permet de récupérer les liste des types de carburant
+     * @return List<String>
+     */
+    public static List<String> getTypeCarburants(){
+        List<String> typesCarburants = new ArrayList<>();
+
+        typesCarburants.add(ESSENCE);
+        typesCarburants.add(DIESEL);
+        typesCarburants.add(HYBRIDE);
+        typesCarburants.add(BERLINE);
+
+        return typesCarburants;
     }
 }

@@ -1,74 +1,119 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 import android.media.Image;
+import android.support.annotation.NonNull;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import java.util.ArrayList;
+import java.util.List;
 
-@DatabaseTable(tableName = "vehicules")
+@Entity(tableName = "vehicules",
+        foreignKeys = {
+                @ForeignKey(entity = Modele.class, parentColumns = "id", childColumns = "modele_id"),
+                @ForeignKey(entity = Agence.class, parentColumns = "id", childColumns = "agence_id")
+
+        })
 public class Vehicule {
 
-    @DatabaseField(generatedId = true)
-    private int id;
+    public static final String DISPO = "Disponible";
+    public static final String LOUE = "Loué";
+    public static final String NON_DISPO = "Indisponible";
+    public static final String RESERVE = "Réservé";
+
+    @PrimaryKey
+    @NonNull
     private String immat;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Marque marque;
+    private float kilometrage;
+    private String dispo; //état possible : libre|loué|reservé*
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Modele modele;
+    @ColumnInfo(name = "modele_id") // foreignKey
+    private int modeleId;
+
+    @ColumnInfo(name = "agence_id") // foreignKey
+    private int agenceId;
 
 
     public Vehicule() {
     }
 
-    public Vehicule(int id, String immat, Marque marque, Modele modele) {
-        this.id = id;
+    public Vehicule(@NonNull String immat, float kilometrage, String dispo, int modeleId, int agenceId) {
         this.immat = immat;
-        this.marque = marque;
-        this.modele = modele;
+        this.kilometrage = kilometrage;
+        this.dispo = dispo;
+        this.modeleId = modeleId;
+        this.agenceId = agenceId;
     }
 
-    public int getId() {
-        return id;
+    ////////////////////////////
+    //Pour récupérer l'état du véhicule///////
+    ////////////////////////////
+    public static List<String> getListEtat(){
+        List<String> listEtat = new ArrayList<>();
+
+        listEtat.add(DISPO);
+        listEtat.add(LOUE);
+        listEtat.add(NON_DISPO);
+        listEtat.add(RESERVE);
+
+        return listEtat;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
+    @NonNull
     public String getImmat() {
         return immat;
     }
 
-    public void setImmat(String immat) {
+    public void setImmat(@NonNull String immat) {
         this.immat = immat;
     }
 
-    public Marque getMarque() {
-        return marque;
+
+    public float getKilometrage() {
+        return kilometrage;
     }
 
-    public void setMarque(Marque marque) {
-        this.marque = marque;
+    public void setKilometrage(float kilometrage) {
+        this.kilometrage = kilometrage;
     }
 
-    public Modele getModele() {
-        return modele;
+    public String getDispo() {
+        return dispo;
     }
 
-    public void setModele(Modele modele) {
-        this.modele = modele;
+    public void setDispo(String dispo) {
+        this.dispo = dispo;
+    }
+
+    public int getModeleId() {
+        return modeleId;
+    }
+
+    public void setModeleId(int modeleId) {
+        this.modeleId = modeleId;
+    }
+
+    public int getAgenceId() {
+        return agenceId;
+    }
+
+    public void setAgenceId(int agenceId) {
+        this.agenceId = agenceId;
     }
 
     @Override
     public String toString() {
         return "Vehicule{" +
-                "id=" + id +
-                ", immat='" + immat + '\'' +
-                ", marque=" + marque +
-                ", modele=" + modele +
+                "immat='" + immat + '\'' +
+                ", kilometrage=" + kilometrage +
+                ", dispo='" + dispo + '\'' +
+                ", modeleId=" + modeleId +
+                ", agenceId=" + agenceId +
                 '}';
     }
 }

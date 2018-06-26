@@ -2,35 +2,38 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 
 
 import android.accounts.Account;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName = "gerants")
+@Entity(tableName = "gerants",
+        foreignKeys = {
+                @ForeignKey(entity = Agence.class, parentColumns = "id", childColumns = "agence_id")
+        })
 public class Gerant {
 
-    @DatabaseField(generatedId = true)
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String prenom;
     private String nom;
     private String email;
     private String motPasse;
 
-    @DatabaseField(canBeNull = false, foreign = true) // foreignKey
-    private Agence agence;
+    @ColumnInfo(name = "agence_id") // foreignKey
+    private String agenceId;
 
 
     public Gerant() {
     }
 
-    public Gerant(int id, String prenom, String nom, String email, String motPasse, Agence agence) {
-        this.id = id;
+    public Gerant(String prenom, String nom, String email, String motPasse, String agenceId) {
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
         this.motPasse = motPasse;
-        this.agence = agence;
+        this.agenceId = agenceId;
     }
 
 
@@ -74,24 +77,22 @@ public class Gerant {
         this.motPasse = motPasse;
     }
 
-    public Agence getAgence() {
-        return agence;
+    public String getAgenceId() {
+        return agenceId;
     }
 
-    public void setAgence(Agence agence) {
-        this.agence = agence;
+    public void setAgenceId(String agenceId) {
+        this.agenceId = agenceId;
     }
-
 
     @Override
     public String toString() {
         return "Gerant{" +
-                "id=" + id +
                 ", prenom='" + prenom + '\'' +
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
                 ", motPasse='" + motPasse + '\'' +
-                ", agence=" + agence +
+                ", agence=" + agenceId +
                 '}';
     }
 }

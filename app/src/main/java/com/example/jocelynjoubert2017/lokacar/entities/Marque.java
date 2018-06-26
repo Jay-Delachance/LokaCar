@@ -1,31 +1,24 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-@DatabaseTable(tableName = "marques")
+@Entity(tableName = "marques")
 public class Marque {
 
-    @DatabaseField(generatedId = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
     private String nom;
 
 
     public Marque() {
     }
 
-    public Marque(int id, String nom) {
-        this.id = id;
+    public Marque(@NonNull String nom) {
         this.nom = nom;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -39,7 +32,6 @@ public class Marque {
     @Override
     public String toString() {
         return "Marque{" +
-                "id=" + id +
                 ", nom='" + nom + '\'' +
                 '}';
     }
