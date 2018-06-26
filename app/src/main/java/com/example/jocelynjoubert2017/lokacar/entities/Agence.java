@@ -2,6 +2,7 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 
@@ -16,7 +17,7 @@ public class Agence {
     private String ville;
     private String telephone;
 
-
+    @Ignore
     public Agence() {
     }
 
@@ -27,6 +28,7 @@ public class Agence {
         this.ville = ville;
         this.telephone = telephone;
     }
+
 
     public int getId() {
         return id;

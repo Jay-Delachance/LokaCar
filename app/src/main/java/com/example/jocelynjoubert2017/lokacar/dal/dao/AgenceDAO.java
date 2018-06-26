@@ -1,8 +1,6 @@
 package com.example.jocelynjoubert2017.lokacar.dal.dao;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import com.example.jocelynjoubert2017.lokacar.dal.GeneriqueDAO;
@@ -20,6 +18,5 @@ public interface AgenceDAO extends GeneriqueDAO<Agence> {
     // select by id
     @Query("SELECT * FROM agences WHERE id = :id")
     public Agence selectById(int id);
-
 
 }

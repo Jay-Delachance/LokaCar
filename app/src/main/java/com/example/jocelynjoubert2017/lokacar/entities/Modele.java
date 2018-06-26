@@ -4,8 +4,8 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-import android.media.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +32,18 @@ public class Modele {
     private String typeVehicule;
     private String typeCarburant;
     private float prixParJour;
-    private Image photo;
+    private String photo;
+
 
     @ColumnInfo(name = "marque_id")
     private String marqueId; //FK
 
 
+    @Ignore
     public Modele() {
     }
 
-    public Modele(String nom, String typeVehicule, String typeCarburant, int prixParJour, Image photo, String marqueId) {
+    public Modele(String nom, String typeVehicule, String typeCarburant, float prixParJour, String photo, String marqueId) {
         this.nom = nom;
         this.typeVehicule = typeVehicule;
         this.typeCarburant = typeCarburant;
@@ -91,11 +93,11 @@ public class Modele {
         this.prixParJour = prixParJour;
     }
 
-    public Image getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Image photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

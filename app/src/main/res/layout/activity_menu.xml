@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/agence_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/pageVoitures_bouton"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:text="Agence Nantes centre-ville."/>
+
+    <TextView
+        android:id="@+id/bienvenue_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/agence_label"
+        app:layout_constraintLeft_toLeftOf="@+id/pageVoitures_bouton"
+        android:textSize="20dp"
+        android:text="Bonjour Didier Ly !"/>
+
+    <ImageButton
+        android:id="@+id/pageVoitures_bouton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="40dp"
+        android:backgroundTint="#A7DBD8"
+        android:src="@drawable/logo_voiture"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        android:onClick="clicVoitures"/>
+
+    <ImageButton
+        android:id="@+id/pageClients_bouton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#f7d794"
+        android:src="@drawable/logo_people"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/pageVoitures_bouton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
+        android:onClick="clicClients"/>
+
+    <ImageButton
+        android:id="@+id/pageChiffreAffaire_bouton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#ff6b81"
+        android:src="@drawable/logo_chiffre_affaire"
+        app:layout_constraintLeft_toLeftOf="@+id/pageVoitures_bouton"
+        app:layout_constraintTop_toBottomOf="@id/pageClients_bouton"
+        tools:layout_editor_absoluteX="35dp"
+        android:onClick="clicChiffreAffaire"/>
+
+    <ImageButton
+        android:id="@+id/pageParametres_bouton"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:backgroundTint="#a29bfe"
+        android:src="@drawable/logo_params"
+        app:layout_constraintLeft_toRightOf="@+id/pageChiffreAffaire_bouton"
+        app:layout_constraintTop_toBottomOf="@id/pageClients_bouton"
+        tools:layout_editor_absoluteX="35dp"
+        android:onClick="clicParams"/>
+
+</android.support.constraint.ConstraintLayout>

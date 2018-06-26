@@ -5,6 +5,7 @@ import android.accounts.Account;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 
@@ -25,6 +26,7 @@ public class Gerant {
     private String agenceId;
 
 
+    @Ignore
     public Gerant() {
     }
 

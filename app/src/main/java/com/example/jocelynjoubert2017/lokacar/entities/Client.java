@@ -2,6 +2,7 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "clients")
@@ -17,7 +18,7 @@ public class Client {
     private String telephone;
     private String email;
 
-
+    @Ignore
     public Client() {
     }
 

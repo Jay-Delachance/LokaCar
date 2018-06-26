@@ -4,8 +4,11 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+
+import com.example.jocelynjoubert2017.lokacar.utils.DateConverter;
 
 import java.util.Date;
 
@@ -15,29 +18,34 @@ import java.util.Date;
 })
 public class ChiffreAffaires {
 
-    @PrimaryKey
-    private Date dateCA;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+
+    private long dateCA;
     private float totalCA;
 
 
     @ColumnInfo(name = "agence_id") // foreignKey
-    private String agenceId;
+    private int agenceId;
 
 
     public ChiffreAffaires() {
     }
 
-    public ChiffreAffaires(Date dateCA, float totalCA, String agenceId) {
-        this.dateCA = dateCA;
-        this.totalCA = totalCA;
-        this.agenceId = agenceId;
+    public int getId() {
+        return id;
     }
 
-    public Date getDateCA() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getDateCA() {
         return dateCA;
     }
 
-    public void setDateCA(Date dateCA) {
+    public void setDateCA(long dateCA) {
         this.dateCA = dateCA;
     }
 
@@ -45,24 +53,16 @@ public class ChiffreAffaires {
         return totalCA;
     }
 
-    public void setTotalCA(int totalCA) {
+    public void setTotalCA(float totalCA) {
         this.totalCA = totalCA;
     }
 
-    public String getAgenceId() {
+    public int getAgenceId() {
         return agenceId;
     }
 
-    public void setAgenceId(String agenceId) {
+    public void setAgenceId(int agenceId) {
         this.agenceId = agenceId;
     }
-
-    @Override
-    public String toString() {
-        return "ChiffreAffaires{" +
-                ", dateCA=" + dateCA +
-                ", totalCA=" + totalCA +
-                ", agence=" + agenceId +
-                '}';
-    }
 }
+

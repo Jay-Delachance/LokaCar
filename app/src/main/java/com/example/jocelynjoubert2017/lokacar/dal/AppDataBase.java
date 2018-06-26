@@ -32,25 +32,33 @@ import com.example.jocelynjoubert2017.lokacar.entities.Vehicule;
         Gerant.class,
         Vehicule.class
 }, version = 1)
-public abstract class AppDataBase extends RoomDatabase{
+public abstract class AppDataBase extends RoomDatabase {
 
     public static final String DATA_BASE_NAME = "lokacar_bdd";
 
     public abstract AgenceDAO agenceDAO();
+
     public abstract ChiffreAffairesDAO chiffreAffairesDAO();
+
     public abstract ClientDAO clientDAO();
+
     public abstract LocationDAO locationDAO();
+
     public abstract MarqueDAO marqueDAO();
+
     public abstract ModeleDAO modeleDAO();
+
     public abstract GerantDAO gerantDAO();
+
     public abstract VehiculeDAO vehiculeDAO();
 
     /**
      * Retourne un instance de la base de données
+     *
      * @param context
      * @return AppDataBase
      */
-    public static AppDataBase getDataBase(Context context){
+    public static AppDataBase getDataBase(Context context) {
         return Room.databaseBuilder(context, AppDataBase.class, DATA_BASE_NAME).build();
     }
 
