@@ -5,6 +5,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.jocelynjoubert2017.lokacar.dal.dao.AgenceDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.ChiffreAffairesDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.ClientDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.GerantDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.LocationDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.MarqueDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.ModeleDAO;
+import com.example.jocelynjoubert2017.lokacar.dal.dao.VehiculeDAO;
 import com.example.jocelynjoubert2017.lokacar.entities.Agence;
 import com.example.jocelynjoubert2017.lokacar.entities.ChiffreAffaires;
 import com.example.jocelynjoubert2017.lokacar.entities.Client;
@@ -28,14 +36,14 @@ public abstract class AppDataBase extends RoomDatabase{
 
     public static final String DATA_BASE_NAME = "lokacar_bdd";
 
-    /*public abstract AgenceDAO agenceDAO();
-    public abstract ChiffreAffaireDAO chiffreAffaireDAO();
+    public abstract AgenceDAO agenceDAO();
+    public abstract ChiffreAffairesDAO chiffreAffairesDAO();
     public abstract ClientDAO clientDAO();
     public abstract LocationDAO locationDAO();
     public abstract MarqueDAO marqueDAO();
     public abstract ModeleDAO modeleDAO();
-    public abstract UserDAO userDAO();
-    public abstract VoitureDAO voitureDAO();*/
+    public abstract GerantDAO gerantDAO();
+    public abstract VehiculeDAO vehiculeDAO();
 
     /**
      * Retourne un instance de la base de données
