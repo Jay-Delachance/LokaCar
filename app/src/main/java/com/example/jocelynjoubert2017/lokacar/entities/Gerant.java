@@ -1,7 +1,6 @@
 package com.example.jocelynjoubert2017.lokacar.entities;
 
 
-import android.accounts.Account;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
@@ -23,14 +22,14 @@ public class Gerant {
     private String motPasse;
 
     @ColumnInfo(name = "agence_id") // foreignKey
-    private String agenceId;
+    private int agenceId;
 
 
     @Ignore
     public Gerant() {
     }
 
-    public Gerant(String prenom, String nom, String email, String motPasse, String agenceId) {
+    public Gerant(String prenom, String nom, String email, String motPasse, int agenceId) {
         this.prenom = prenom;
         this.nom = nom;
         this.email = email;
@@ -79,11 +78,11 @@ public class Gerant {
         this.motPasse = motPasse;
     }
 
-    public String getAgenceId() {
+    public int getAgenceId() {
         return agenceId;
     }
 
-    public void setAgenceId(String agenceId) {
+    public void setAgenceId(int agenceId) {
         this.agenceId = agenceId;
     }
 

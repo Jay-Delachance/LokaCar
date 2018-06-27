@@ -2,10 +2,8 @@ package com.example.jocelynjoubert2017.lokacar.dal.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
-import android.text.Selection;
 
 import com.example.jocelynjoubert2017.lokacar.dal.GeneriqueDAO;
-import com.example.jocelynjoubert2017.lokacar.entities.Marque;
 import com.example.jocelynjoubert2017.lokacar.entities.Modele;
 
 import java.util.List;
@@ -19,7 +17,7 @@ public interface ModeleDAO extends GeneriqueDAO<Modele> {
 
     // Select par id
     @Query("SELECT * FROM modeles WHERE id=:id")
-    public Modele selectParId(int id);
+    public Modele selectById(int id);
 
     // Select des modèles selon le nom
     @Query("SELECT * FROM modeles WHERE nom LIKE :nom")
@@ -37,4 +35,7 @@ public interface ModeleDAO extends GeneriqueDAO<Modele> {
     // Select un modèle selon un type de carburant
     @Query("SELECT * FROM modeles WHERE typeCarburant LIKE :typeCarburant")
     public List<Modele> selectByCarburant(String typeCarburant);
+
+    @Query("DELETE FROM modeles")
+    public void nukeTable();
 }

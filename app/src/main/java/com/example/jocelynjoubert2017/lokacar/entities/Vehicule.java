@@ -6,7 +6,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-import android.media.Image;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -41,6 +40,11 @@ public class Vehicule {
 
     @Ignore
     public Vehicule() {
+    }
+
+    @Ignore
+    public Vehicule(String immat) {
+        this.immat = immat;
     }
 
     public Vehicule(@NonNull String immat, float kilometrage, String dispo, int modeleId, int agenceId) {

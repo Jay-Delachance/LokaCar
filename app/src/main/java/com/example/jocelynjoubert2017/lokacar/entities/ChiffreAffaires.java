@@ -4,15 +4,9 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-
-import com.example.jocelynjoubert2017.lokacar.utils.DateConverter;
-
-import java.util.Date;
-
-@Entity(tableName = "ChiffresAffaires",
+@Entity(tableName = "chiffresaffaires",
         foreignKeys = {
         @ForeignKey(entity = Agence.class, parentColumns = "id", childColumns = "agence_id")
 })

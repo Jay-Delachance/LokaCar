@@ -2,7 +2,6 @@ package com.example.jocelynjoubert2017.lokacar.dal.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
-import android.text.Selection;
 
 import com.example.jocelynjoubert2017.lokacar.dal.GeneriqueDAO;
 import com.example.jocelynjoubert2017.lokacar.entities.Location;
@@ -47,4 +46,7 @@ public interface LocationDAO extends GeneriqueDAO<Location> {
     //Select par date de retour prevu
     @Query("SELECT * FROM Locations WHERE dateRetourPrevu = :dateRetour")
     public List<Location> selectParDateRetourPrevu(long dateRetour);
+
+    @Query("DELETE FROM locations")
+    public void nukeTable();
 }

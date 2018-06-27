@@ -18,4 +18,7 @@ public interface GerantDAO extends GeneriqueDAO<Gerant> {
     // select un gérant par l'id de l'agence à laquelle il est rattaché
     @Query("SELECT * from gerants WHERE agence_id= :agenceId")
     public List<Gerant> selectByIdAgence(int agenceId);
+
+    @Query("DELETE FROM gerants")
+    public void nukeTable();
 }

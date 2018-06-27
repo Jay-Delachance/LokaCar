@@ -19,4 +19,7 @@ public interface AgenceDAO extends GeneriqueDAO<Agence> {
     @Query("SELECT * FROM agences WHERE id = :id")
     public Agence selectById(int id);
 
+
+    @Query("DELETE FROM agences")
+    public void nukeTable();
 }

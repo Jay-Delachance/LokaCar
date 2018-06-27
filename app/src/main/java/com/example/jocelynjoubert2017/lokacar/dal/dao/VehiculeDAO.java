@@ -34,4 +34,7 @@ public interface VehiculeDAO extends GeneriqueDAO<Vehicule> {
             "WHERE v.dispo = :dispo AND (md.nom LIKE :motCle OR md.marque_id LIKE :motCle) AND md.typeVehicule LIKE :type")
     public List<Vehicule> selectByCriteres(String dispo, String motCle, String type);
 
+    @Query("DELETE FROM vehicules")
+    public void nukeTable();
+
 }

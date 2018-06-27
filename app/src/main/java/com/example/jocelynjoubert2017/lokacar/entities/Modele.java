@@ -17,9 +17,12 @@ import java.util.List;
 public class Modele {
 
     public final static String CITADINE = "Citadine";
+    public final static String COMPACTE = "Compacte";
     public final static String SUV = "SUV";
     public final static String BERLINE = "Berling";
-    public final static String FAMILLIALE = "Familliale";
+    public final static String FAMILIALE = "Familiale";
+    public final static String SPORTIVE = "Sportive";
+    public final static String PICKUP = "Pick-up";
 
     public final static String ESSENCE = "Essence";
     public final static String DIESEL = "Diesel";
@@ -131,8 +134,11 @@ public class Modele {
 
         typesVehicules.add(SUV);
         typesVehicules.add(CITADINE);
-        typesVehicules.add(FAMILLIALE);
+        typesVehicules.add(COMPACTE);
+        typesVehicules.add(FAMILIALE);
         typesVehicules.add(BERLINE);
+        typesVehicules.add(SPORTIVE);
+        typesVehicules.add(PICKUP);
 
         return typesVehicules;
     }

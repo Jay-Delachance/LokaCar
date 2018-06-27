@@ -22,4 +22,7 @@ public interface ClientDAO extends GeneriqueDAO<Client> {
     // select par nom
     @Query("SELECT * FROM clients where nom LIKE :nom")
     public List<Client> selectByName(String nom);
+
+    @Query("DELETE FROM clients")
+    public void nukeTable();
 }

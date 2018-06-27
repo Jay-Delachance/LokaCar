@@ -14,4 +14,7 @@ public interface ChiffreAffairesDAO extends GeneriqueDAO<ChiffreAffaires>{
     //Select du CA par date
     @Query("SELECT * FROM ChiffresAffaires WHERE dateCA = :date")
     public List<ChiffreAffaires> selectByDate(long date);
+
+    @Query("DELETE FROM chiffresaffaires")
+    public void nukeTable();
 }
