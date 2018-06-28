@@ -32,10 +32,11 @@ public class ListeVoituresAdapter extends RecyclerView.Adapter<VoitureViewHolder
     @Override
     public void onBindViewHolder(VoitureViewHolder holder, int position)
     {
-        holder.textViewImmat.setText(listeVoitures.get(position).getImmat());
-        holder.textViewModele.setText(String.valueOf(listeVoitures.get(position).getModeleId()));
-        holder.textViewAgence.setText(String.valueOf(listeVoitures.get(position).getAgenceId()));
+        holder.textViewMarque.setText(listeVoitures.get(position).getMarque().getNom());
+        holder.textViewModele.setText(listeVoitures.get(position).getModele().getNom());
+        holder.textViewAgence.setText(listeVoitures.get(position).getAgence().getNom());
         holder.textViewDispo.setText(listeVoitures.get(position).getDispo());
+        holder.textViewImmatriculation.setText(listeVoitures.get(position).getImmat());
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.example.jocelynjoubert2017.lokacar.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
 import android.support.annotation.NonNull;
@@ -46,16 +47,18 @@ public class Location {
     private String vehiculeId;
 
     @ColumnInfo(name = "agence_id") // foreignKey
-    private String agenceId;
+    private int agenceId;
 
     @ColumnInfo(name = "client_id") // foreignKey
-    private String clientId;
+    private int clientId;
 
+    @Ignore
+    private Client client;
 
     public Location() {
     }
 
-    public Location(Date dateReservation, Date dateDepart, Date dateRetourReel, Date dateRetourPrevu, String vehiculeId, String agenceId, String clientId) {
+    public Location(Date dateReservation, Date dateDepart, Date dateRetourReel, Date dateRetourPrevu, String vehiculeId, int agenceId, int clientId) {
         this.dateReservation = DateConverter.dateToTimestamp(dateReservation);
         this.dateDepart = DateConverter.dateToTimestamp(dateDepart);
         this.dateRetourReel = DateConverter.dateToTimestamp(dateRetourReel);
@@ -151,21 +154,29 @@ public class Location {
     }
 
     @NonNull
-    public String getAgenceId() {
+    public int getAgenceId() {
         return agenceId;
     }
 
-    public void setAgenceId(@NonNull String agenceId) {
+    public void setAgenceId(@NonNull int agenceId) {
         this.agenceId = agenceId;
     }
 
     @NonNull
-    public String getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(@NonNull String clientId) {
+    public void setClientId(@NonNull int clientId) {
         this.clientId = clientId;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override

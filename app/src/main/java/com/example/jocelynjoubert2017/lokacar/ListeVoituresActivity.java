@@ -1,11 +1,15 @@
 package com.example.jocelynjoubert2017.lokacar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -38,7 +42,6 @@ public class ListeVoituresActivity extends AppCompatActivity implements Recycler
 
         // vues :
         recyclerView = findViewById(R.id.liste_voitures);
-        editTextVoiture = findViewById(R.id.saisie_voiture);
 
         // à ajouter pour de meilleures performances :
         recyclerView.setHasFixedSize(true);
@@ -82,13 +85,20 @@ public class ListeVoituresActivity extends AppCompatActivity implements Recycler
                     @Override
                     public void run() {
                         listeVoitures = appDataBase.vehiculeDAO().getAll();
-                        //Modele modele = appDataBase.modeleDAO().selectById(1);
+                        for (Vehicule v:listeVoitures) {
+                            v.setModele(appDataBase.modeleDAO().selectById(v.getModeleId()));
+                            v.setMarque(appDataBase.marqueDAO().selectById(v.getModele().getMarqueId()));
+                            v.setAgence(appDataBase.agenceDAO().selectById(v.getAgenceId()));
+                        }
 
-                        listeVoituresAdapter = new ListeVoituresAdapter(listeVoitures);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(ListeVoituresActivity.this));
-                        recyclerView.setAdapter(listeVoituresAdapter);
-
-                        Log.i("tz", "liste : " + listeVoitures);
+                        ListeVoituresActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listeVoituresAdapter = new ListeVoituresAdapter(listeVoitures);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(ListeVoituresActivity.this));
+                                recyclerView.setAdapter(listeVoituresAdapter);
+                            }
+                        });
                     }
 
                 });
@@ -98,7 +108,30 @@ public class ListeVoituresActivity extends AppCompatActivity implements Recycler
                 }
             }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_test, menu);
+        return true;
+    }
 
+    //gère le click sur une action de l'ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_menu) {
+            Intent intent = new Intent (this, MenuActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+    }
+
+
+    public void boutonAjouterVoiture (View view) {
+
+        Intent intent = new Intent (this, AjouterVoitureActivity.class);
+        startActivity(intent);
+    }
 
 
 

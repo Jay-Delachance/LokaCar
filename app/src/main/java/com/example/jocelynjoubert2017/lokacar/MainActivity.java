@@ -6,13 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.jocelynjoubert2017.lokacar.entities.Agence;
+import com.example.jocelynjoubert2017.lokacar.entities.Client;
+import com.example.jocelynjoubert2017.lokacar.entities.Gerant;
+import com.example.jocelynjoubert2017.lokacar.entities.Location;
+import com.example.jocelynjoubert2017.lokacar.entities.Marque;
+import com.example.jocelynjoubert2017.lokacar.entities.Modele;
+import com.example.jocelynjoubert2017.lokacar.entities.Vehicule;
+
+import java.util.Date;
+
+import static com.example.jocelynjoubert2017.lokacar.dal.AppDataBase.getDataBase;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -87,9 +99,15 @@ public class MainActivity extends AppCompatActivity {
                 getDataBase(MainActivity.this).clientDAO().insert(new Client("Jane", "Doe", "22 impasse de la Mémoire", "44300", "Nantes", "02 40 23 68 95", "jane@gmail.com"));
                 getDataBase(MainActivity.this).clientDAO().insert(new Client("Jay", "Robertsson", "12 rue de la plage", "44200", "Nantes", "02 40 27 64 91", "jay@gmail.com"));
 
-
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,24), new Date(118,05,25), new Date(118,05,28), new Date(118,05,28), "AR-830-AO", 1, 1));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,25), new Date(118,05,26), new Date(118,05,29), new Date(118,05,29), "AR-257-AO", 1, 1));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,25), new Date(118,06,02), new Date(118,06,05), new Date(118,06,05), "GR-430-VO", 1, 4));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,26), new Date(118,06,03), new Date(118,06,07), new Date(118,06,07), "GC-654-MR", 2, 3));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,26), new Date(118,06,03), new Date(118,06,06), new Date(118,06,06), "ER-357-MO", 3, 2));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,27), new Date(118,06,05), new Date(118,06,07), new Date(118,06,07), "MF-687-HM", 4, 2));
+                getDataBase(MainActivity.this).locationDAO().insert(new Location(new Date(118,05,27), new Date(118,06,05), new Date(118,06,06), new Date(118,06,06), "AB-589-RV", 3, 1));
             }
-        }).start();*/
+        }).start();
     }
 
     public void boutonConnexion (View view) {

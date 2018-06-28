@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/agence_label"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/pageVoitures_bouton"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:textStyle="bold"
+        android:textColor="#000000"
         android:layout_marginTop="40dp"
         android:text="Agence Nantes centre-ville."/>
 
@@ -22,14 +23,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/agence_label"
         app:layout_constraintLeft_toLeftOf="@+id/pageVoitures_bouton"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:text="Bonjour Didier Ly !"/>
 
     <ImageButton
         android:id="@+id/pageVoitures_bouton"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="55dp"
         android:backgroundTint="#A7DBD8"
         android:src="@drawable/logo_voiture"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +44,7 @@
         android:id="@+id/pageClients_bouton"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#f7d794"
         android:src="@drawable/logo_people"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +65,7 @@
         android:onClick="clicChiffreAffaire"/>
 
     <ImageButton
-        android:id="@+id/pageParametres_bouton"
+        android:id="@+id/pageLocations_Bouton"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:backgroundTint="#a29bfe"
@@ -70,6 +73,6 @@
         app:layout_constraintLeft_toRightOf="@+id/pageChiffreAffaire_bouton"
         app:layout_constraintTop_toBottomOf="@id/pageClients_bouton"
         tools:layout_editor_absoluteX="35dp"
-        android:onClick="clicParams"/>
+        android:onClick="clicLocations"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.Update;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -37,6 +38,14 @@ public class Vehicule {
     @ColumnInfo(name = "agence_id") // foreignKey
     private int agenceId;
 
+    @Ignore
+    private Marque marque;
+
+    @Ignore
+    private Modele modele;
+
+    @Ignore
+    private Agence agence;
 
     @Ignore
     public Vehicule() {
@@ -110,6 +119,32 @@ public class Vehicule {
 
     public void setAgenceId(int agenceId) {
         this.agenceId = agenceId;
+    }
+
+    public Modele getModele() {
+        return modele;
+    }
+
+
+    public void setModele(Modele modele) {
+        this.modele = modele;
+    }
+
+
+    public Marque getMarque() {
+        return marque;
+    }
+
+    public void setMarque(Marque marque) {
+        this.marque = marque;
+    }
+
+    public Agence getAgence() {
+        return agence;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     @Override

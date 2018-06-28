@@ -14,21 +14,21 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.jocelynjoubert2017.lokacar.dal.AppDataBase;
-import com.example.jocelynjoubert2017.lokacar.dal.dao.ClientDAO;
 import com.example.jocelynjoubert2017.lokacar.entities.Client;
+import com.example.jocelynjoubert2017.lokacar.entities.Location;
 import com.example.jocelynjoubert2017.lokacar.entities.Vehicule;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeClientsActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener {
+public class ListeLocationsActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener {
 
     private RecyclerView recyclerView = null;
     private AppDataBase appDataBase;
-    private List<Client> listeClients = new ArrayList<>();
+    private List<Location> listeLocations = new ArrayList<>();
 
     // Adapter :
-    private ListeClientsAdapter listeClientsAdapter = null;
+    private ListeLocationsAdapter listeLocationsAdapter = null;
 
     // Gesture detector :
     private GestureDetector gestureDetector = null;
@@ -36,10 +36,10 @@ public class ListeClientsActivity extends AppCompatActivity implements RecyclerV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liste_clients);
+        setContentView(R.layout.activity_liste_locations);
 
         // vues :
-        recyclerView = findViewById(R.id.liste_clients);
+        recyclerView = findViewById(R.id.liste_locations);
 
         // à ajouter pour de meilleures performances :
         recyclerView.setHasFixedSize(true);
@@ -69,23 +69,25 @@ public class ListeClientsActivity extends AppCompatActivity implements RecyclerV
      * Permet de lancer la requete dans un thread
      */
     private void launchThread(){
-        listeClients.clear();
-        Log.i("tz", "liste : " + listeClients);
+        listeLocations.clear();
+        Log.i("tz", "liste : " + listeLocations);
 // mettre un loader
         Thread thread = new Thread(new Runnable() {
 
             @Override
             public void run() {
-                listeClients = appDataBase.clientDAO().getAll();
-
+                listeLocations = appDataBase.locationDAO().getAll();
+                for (Location l:listeLocations) {
+                    l.setClient(appDataBase.clientDAO().selectById(l.getClientId()));
+                }
 
                 //Modele modele = appDataBase.modeleDAO().selectById(1);
 
-                listeClientsAdapter = new ListeClientsAdapter(listeClients);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ListeClientsActivity.this));
-                recyclerView.setAdapter(listeClientsAdapter);
+                listeLocationsAdapter = new ListeLocationsAdapter(listeLocations);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ListeLocationsActivity.this));
+                recyclerView.setAdapter(listeLocationsAdapter);
 
-                Log.i("tz", "liste : " + listeClients);
+                Log.i("tz", "liste : " + listeLocations);
             }
 
         });
@@ -94,8 +96,6 @@ public class ListeClientsActivity extends AppCompatActivity implements RecyclerV
             thread.start();
         }
     }
-
-
 
 
 
@@ -143,6 +143,4 @@ public class ListeClientsActivity extends AppCompatActivity implements RecyclerV
 
         return true;
     }
-
-
 }

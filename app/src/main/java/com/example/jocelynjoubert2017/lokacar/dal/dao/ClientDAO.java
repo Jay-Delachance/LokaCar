@@ -17,7 +17,7 @@ public interface ClientDAO extends GeneriqueDAO<Client> {
 
     // select par id
     @Query("SELECT * FROM clients where id = :id")
-    public Client selectById(String id);
+    public Client selectById(int id);
 
     // select par nom
     @Query("SELECT * FROM clients where nom LIKE :nom")

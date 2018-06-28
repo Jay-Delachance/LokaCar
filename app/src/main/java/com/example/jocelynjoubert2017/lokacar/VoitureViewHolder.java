@@ -7,11 +7,11 @@ import android.widget.TextView;
 public class VoitureViewHolder extends RecyclerView.ViewHolder {
 
     // Vue intitulé voiture :
-    public TextView textViewImmat = null;
+    public TextView textViewMarque = null;
     public TextView textViewModele = null;
     public TextView textViewAgence = null;
     public TextView textViewDispo = null;
-    public TextView textViewName = null;
+    public TextView textViewImmatriculation = null;
 
 
     /**
@@ -21,11 +21,11 @@ public class VoitureViewHolder extends RecyclerView.ViewHolder {
     public VoitureViewHolder(View itemView)
     {
         super(itemView);
-        textViewImmat = itemView.findViewById(R.id.voiture_immat);
+        textViewMarque = itemView.findViewById(R.id.voiture_marque);
         textViewModele = itemView.findViewById(R.id.voiture_modele);
         textViewAgence = itemView.findViewById(R.id.voiture_agence);
         textViewDispo = itemView.findViewById(R.id.voiture_dispo);
-        textViewName = itemView.findViewById(R.id.voiture_name);
+        textViewImmatriculation = itemView.findViewById(R.id.voiture_immatriculation);
     }
 
 

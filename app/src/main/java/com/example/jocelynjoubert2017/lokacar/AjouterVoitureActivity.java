@@ -2,17 +2,26 @@ package com.example.jocelynjoubert2017.lokacar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
-public class ChiffreAffaireActivity extends AppCompatActivity {
+public class AjouterVoitureActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chiffre_affaire);
+        setContentView(R.layout.activity_ajouter_voiture);
+    }
+
+    public void confirmerAjoutVoiture (View view) {
+
+        Intent intent = new Intent (this, ListeVoituresActivity.class);
+        startActivity(intent);
     }
 
     @Override
